@@ -9,6 +9,7 @@ import net.yiran.tetrajs.kubejs.builders.items.AbstractWithSlotModularItemBuilde
 
 public class DynamicCuriosModularItemBuilder extends AbstractModularItemBuilder<DynamicCuriosModularItemBuilder> {
     public boolean providerAttribute = true;
+    public boolean isUnbreakable = false;
 
     public DynamicCuriosModularItemBuilder(ResourceLocation itemID) {
         super(itemID);
@@ -24,9 +25,14 @@ public class DynamicCuriosModularItemBuilder extends AbstractModularItemBuilder<
         return this;
     }
 
+    public DynamicCuriosModularItemBuilder tjs$isUnbreakable() {
+        this.isUnbreakable = true;
+        return this;
+    }
+
     @Override
     public Item createObject() {
-        return new DynamicCuriosModularItem(id, canHone, honeBase, honeIntegrityMultiplier, synergiesPath, providerAttribute);
+        return new DynamicCuriosModularItem(id, canHone, honeBase, honeIntegrityMultiplier, synergiesPath, providerAttribute,isUnbreakable);
     }
 
 }

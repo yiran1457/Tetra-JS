@@ -126,8 +126,8 @@ dependencies {
     modImplementation("curse.maven:placebo-283644:6274231")
     modImplementation("curse.maven:apothic-attributes-898963:5634071")
     modImplementation("curse.maven:ibe-editor-256822:4994072")
-    modImplementation("curse.maven:modern-ui-352491:6199942")
     modImplementation("curse.maven:jei-238222:6600311")
+    modImplementation("curse.maven:modern-ui-352491:6199942")
     {//compat
         //Curios
         modImplementation("curse.maven:curios-309927:6418456")
