@@ -19,6 +19,7 @@ public class TetraJSPlugin extends KubeJSPlugin {
     @Override
     public void init() {
         RegistryInfo.ITEM.addType("TetraJS:BaseModularItem", BaseModularItemBuilder.class, BaseModularItemBuilder::new);
+        RegistryInfo.ITEM.addType("TetraJS:TwoHandedModularItem", TwoHandedModularItemBuilder.class, TwoHandedModularItemBuilder::new);
         RegistryInfo.ITEM.addType("TetraJS:DynamicModularItem", DynamicModularItemBuilder.class, DynamicModularItemBuilder::new);
         RegistryInfo.ITEM.addType("TetraJS:BowModularItem", BowModularItemBuilder.class, BowModularItemBuilder::new);
         RegistryInfo.ITEM.addType("TetraJS:ShieldModularItem", ShieldModularItemBuilder.class, ShieldModularItemBuilder::new);
