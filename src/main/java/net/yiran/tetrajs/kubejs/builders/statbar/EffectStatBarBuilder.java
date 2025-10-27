@@ -31,7 +31,7 @@ public class EffectStatBarBuilder extends AbstractStatBarBuilder<EffectStatBarBu
 
     @Override
     public String getKey() {
-        return "tetra.stat." + effect.getKey();
+        return "tetra.stats." + effect.getKey();
     }
 
     @Override

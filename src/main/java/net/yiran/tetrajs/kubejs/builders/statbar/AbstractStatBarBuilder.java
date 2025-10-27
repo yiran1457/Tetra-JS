@@ -1,7 +1,9 @@
 package net.yiran.tetrajs.kubejs.builders.statbar;
 
 import net.yiran.tetrajs.util.StatGetterWrapper;
+import net.yiran.tetrajs.util.TooltipGetterMultiValueWrapper;
 import se.mickelus.tetra.gui.stats.bar.GuiStatBar;
+import se.mickelus.tetra.gui.stats.bar.GuiStatIndicator;
 import se.mickelus.tetra.gui.stats.getter.*;
 
 import java.util.ArrayList;
@@ -16,7 +18,9 @@ public abstract class AbstractStatBarBuilder<THIS extends IStatBarBuilder<?>> im
     public ILabelGetter labelGetter = LabelGetterBasic.integerLabel;
     public IStatGetter statGetter;
     public List<IStatGetter> statGetters = new ArrayList<>();
+    public List<IStatGetter> extendStatGetters = new ArrayList<>();
     public List<IStatFormat> statFormats = new ArrayList<>();
+    public List<GuiStatIndicator> statIndicators = new ArrayList<>();
     public StatGetterWrapper.ShowCheck showCheck;
 
     public THIS setShowCheck(StatGetterWrapper.ShowCheck showCheck) {
@@ -44,6 +48,16 @@ public abstract class AbstractStatBarBuilder<THIS extends IStatBarBuilder<?>> im
 
     public THIS addAbbreviateTooltip(IStatGetter statGetter) {
         return addTooltipStatGetter(statGetter, StatFormat.abbreviate);
+    }
+
+    public THIS addExtendGetter(IStatGetter statGetter) {
+        extendStatGetters.add(statGetter);
+        return (THIS) this;
+    }
+
+    public THIS addStatIndicator(GuiStatIndicator statIndicator) {
+        statIndicators.add(statIndicator);
+        return (THIS) this;
     }
 
     @Override
@@ -133,14 +147,17 @@ public abstract class AbstractStatBarBuilder<THIS extends IStatBarBuilder<?>> im
     @Override
     public GuiStatBar build() {
         checkBuildPre();
-        return new GuiStatBar(
+        GuiStatBar result = new GuiStatBar(
                 0, 0, 59, getKey(),
                 min, max, segmented, split, inverted,
-                showCheck == null ? statGetter : new StatGetterWrapper(statGetter, showCheck), labelGetter, new TooltipGetterMultiValue(
+                showCheck == null ? statGetter : new StatGetterWrapper(statGetter, showCheck), labelGetter, new TooltipGetterMultiValueWrapper(
                 getLangKey(),
                 statGetters.toArray(new IStatGetter[0]),
-                statFormats.toArray(new IStatFormat[0])
+                statFormats.toArray(new IStatFormat[0]),
+                extendStatGetters.toArray(new IStatGetter[0])
         ));
+        result.setIndicators(statIndicators.toArray(new GuiStatIndicator[0]));
+        return  result;
     }
 
     public enum LABELS {

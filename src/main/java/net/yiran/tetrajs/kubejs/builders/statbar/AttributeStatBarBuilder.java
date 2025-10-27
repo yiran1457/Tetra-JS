@@ -65,7 +65,7 @@ public class AttributeStatBarBuilder extends AbstractStatBarBuilder<AttributeSta
 
     @Override
     public String getKey() {
-        return "tetra.stat." + attribute.getDescriptionId();
+        return "tetra.stats." + attribute.getDescriptionId();
     }
 
     public enum TYPE {

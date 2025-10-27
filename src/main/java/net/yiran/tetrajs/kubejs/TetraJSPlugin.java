@@ -49,6 +49,7 @@ public class TetraJSPlugin extends KubeJSPlugin {
         addTetraJSBinding(event, "TetraJSUtils", TetraJSUtils.INSTANCE);
         addTetraJSBinding(event, "ShowModelHelper", ShowModelHelper.INSTANCE);
         addTetraJSBinding(event, "LangUtils", LangUtils.INSTANCE);
+        addTetraJSBinding(event, "SchematicUtils", SchematicUtils.INSTANCE);
         CompatManager.registerCompatBindings((name, value) -> addTetraJSBinding(event, name, value));
     }
 
