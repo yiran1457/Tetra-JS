@@ -39,7 +39,7 @@ public class TetraJS {
             ProbeJSPlugins.register(new TetraProbePlugin());
         }
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
-        if(FMLEnvironment.dist == Dist.CLIENT) {
+        if (FMLEnvironment.dist == Dist.CLIENT) {
             modEventBus.addListener(TetraJSClient::onClientSetup);
         }
         modEventBus.addListener(EventPriority.LOWEST, this::onCommonSetup);
@@ -47,6 +47,9 @@ public class TetraJS {
     }
 
     public void onCommonSetup(final FMLCommonSetupEvent event) {
+        if (FMLEnvironment.dist == Dist.CLIENT) {
+            TetraJSClient.itemClientInit(items);
+        }
         items.forEach(init -> init.commonInit(TetraMod.packetHandler));
         items.clear();
         items = null;

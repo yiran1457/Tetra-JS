@@ -6,9 +6,17 @@ import net.yiran.tetrajs.kubejs.events.StatSorterRegisterEventJS;
 import net.yiran.tetrajs.kubejs.events.TetraJSEvents;
 import se.mickelus.tetra.blocks.workbench.gui.WorkbenchStatsGui;
 import se.mickelus.tetra.gui.stats.bar.GuiStatBar;
+import se.mickelus.tetra.items.InitializableItem;
 import se.mickelus.tetra.items.modular.impl.holo.gui.craft.HoloStatsGui;
 
+import java.util.List;
+
 public class TetraJSClient {
+    public static void itemClientInit(List<InitializableItem> items){
+        for (InitializableItem item : items) {
+            item.clientInit();
+        }
+    }
 
     public static void onClientSetup(FMLClientSetupEvent event) {
         var registerEvent = new StatBarRegisterEventJS();
